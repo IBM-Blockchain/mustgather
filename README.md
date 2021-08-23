@@ -1,7 +1,10 @@
-# IBM Blockchain Platform Must Gather Tool
+# ***IBM Blockchain Platform Must Gather Tool***
 
-IBM Blockchain Platform Must Gather is a tool that has two use cases. The first use case is to be able to perform checks on your environment. This environment can be one with a current IBM Blockchain Platform installation or one you intend to perform an installation on. 
+## ***Introduction***
 
+IBM Blockchain Platform Must Gather Tool has two use cases. The first use case is to be able to perform checks on your environment, the second use case is to collect logs and information about you environment. The environment can be one with a current IBM Blockchain Platform installation or one you intend to perform an installation on. 
+
+### Checks Performed
 The checks which will be performed on a environment without an IBP installation include:
 
 - Checking the version of Kubernetes used
@@ -10,7 +13,7 @@ The checks which will be performed on a environment without an IBP installation 
 - Checking there are enough worker nodes in each zone
 - Checking each worker node has enough resources
 
-The checks which will be performed in addition to those above the environments with an IBP installation include:
+The checks which will be performed in addition to those above with an IBP installation include:
 
 - Checking certificate expiry dates
 - Checking the issuer is correct for admin certificates
@@ -19,30 +22,31 @@ The checks which will be performed in addition to those above the environments w
 - Checking each CA has enough resources
 - Checking each of the public endpoints can be reached
 
-The second use case is to collect logs and information about an IBM Blockchain Platform installation. 
+### Logs and Information Collected
+The information collected without an IBM Blockchain Platform installation include:
 
-The information collected includes:
+- Storage Classes information
+- Worker Node information
 
+The information collected in addition to those above with an IBM Blockchain Platform installation include: 
+
+- Config Maps information
+- Deployments information
+- Ingress information including which type of ingress used
 - Node information (Peers, Orderers, and CAs)
     - Logs
     - Version
     - Status
     - Resources assigned
-    - Metadata
-   
+    - Metadata   
 - Pod status
 - Persistent Volume Claims information
-- Config Maps information
-- Deployments information
-- Ingress information including which type of ingress used
 - Replica Set information
 - Services information
-- Storage Classes information
-- Worker Node information
 
-## **Running IBM Blockchain Platform Must Gather Tool**
+## ***Running IBM Blockchain Platform Must Gather Tool***
 
-The  IBM Blockchain Platform Must Gather tool runs as a pod in a Kubernetes or Openshift cluster environment. This repository contains a script which can be downloaded and run.
+The IBM Blockchain Platform Must Gather tool runs as a pod in a Kubernetes or Openshift cluster environment. This repository contains a script which can be downloaded and run.
 
 1. Download the script to your local file system
 2. Ensure you can connect to your cluster from the CLI
