@@ -9,9 +9,10 @@ thing=$kube
 namespace=
 type=
 
+imagePrefix=ibmcom/
+
 #dev mode vars
 devMode=false
-imagePrefix=
 dockerUserName=
 dockerPassword=
 dockerEmail=
