@@ -56,17 +56,23 @@ There are two ways to run the tool as described above.
 If you just want to collect information on your environment without collecting any information about a IBM Blockchain Platform installation then run the following:
 
 ```
-    ./runMustGather.sh
+    ./run-mustgather.sh
 ```
 
 If you want to collect information about your environment and IBM Blockchain Platform installation, then you need to provide the namespace of the installation:
 
 ```
-    ./runMustGather.sh -n <ibpNameSpace>
+    ./run-mustgather.sh -n <ibpNameSpace>
 ```
 
 If you want to run the script on Openshift then use the `-type`option:
 
 ```
-    ./runMustGather.sh -n <ibpNameSpace> -type oc
+    ./run-mustgather.sh -n <ibpNameSpace> -type oc
+```
+
+If you want to run the script on Windows then you will need to use powershell:
+
+```
+    ./run-mustgasther.psl
 ```
