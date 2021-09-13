@@ -10,13 +10,13 @@ $imagePrefix="ibmcom/"
 function usage {
     $usageOutput = @"
     Usage:
-    ./runMustGather.sh [options]
+    ./run-mustgather.ps1 [options]
 
     Options:
     --namespace <n>
         The namespace of the IBM Blockchain instance. If you don't provide this, the tool will only gather a subset of information
     --type <t>
-        The type of environment your cluster is running in. Possbile values are "kb" or "oc". Defaults to Kubernetes
+        The type of environment your cluster is running in. Possible values are "kb" or "oc". Defaults to Kubernetes
 "@
 
     Write-Output $usageOutput
@@ -113,6 +113,12 @@ rules:
       verbs: ["get", "list", "watch"]
     - apiGroups: ["storage.k8s.io"]
       resources: ["storageclasses"]
+      verbs: ["get", "list", "watch"]
+    - apiGroups: ["config.openshift.io"]
+      resources: ["clusterversions"]
+      verbs: ["get", "list", "watch"]
+    - apiGroups: ["route.openshift.io"]
+      resources: ["routes"]
       verbs: ["get", "list", "watch"]
 '@
 

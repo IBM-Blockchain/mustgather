@@ -20,13 +20,13 @@ dockerEmail=
 function usage {
     cat << EOF
     Usage:
-    ./runMustGather.sh [options]
+    ./run-mustgather.sh [options]
 
     Options:
     --namespace <n>
         The namespace of the IBM Blockchain instance. If you don't provide this, the tool will only gather a subset of information
     --type <t>
-        The type of environment your cluster is running in. Possbile values are "kb" or "oc". Defaults to Kubernetes
+        The type of environment your cluster is running in. Possible values are "kb" or "oc". Defaults to Kubernetes
 EOF
 }
 
@@ -114,7 +114,7 @@ if [ "$devMode" == true ] ; then
     echo "$(date) Running in dev mode"
 fi
 
-echo "$(date) check if mustgather namespace exists"
+echo "$(date) Check if mustgather namespace exists"
 if ! $thing get namespace mustgather ; then
     echo "$(date) Creating mustgather name space"
     $thing create namespace mustgather
@@ -122,7 +122,7 @@ fi
 
 
 if [ "$devMode" == true ] ; then
-    echo "$(date) check if secret exists"
+    echo "$(date) Check if secret exists"
     if $thing get secret mustgathersecret -n mustgather ; then
       $thing delete secret mustgathersecret -n mustgather
     fi
@@ -158,6 +158,12 @@ rules:
       verbs: ["get", "list", "watch"]
     - apiGroups: ["storage.k8s.io"]
       resources: ["storageclasses"]
+      verbs: ["get", "list", "watch"]
+    - apiGroups: ["config.openshift.io"]
+      resources: ["clusterversions"]
+      verbs: ["get", "list", "watch"]
+    - apiGroups: ["route.openshift.io"]
+      resources: ["routes"]
       verbs: ["get", "list", "watch"]
 EOL
 
@@ -207,6 +213,8 @@ $thing apply -f mustgather.yaml -n mustgather
 echo "$(date) Wating for pod must gather to be created (this can take up to 10 minutes)"
 $thing wait -n mustgather --for=condition=Ready pod/mustgather --timeout=1200s
 
+timestamp=$(date +"%m%d%Y%H%M")
+
 echo "$(date) Running must gather tool"
 if [ -z "$namespace" ] ; then
     $thing exec mustgather -n mustgather -- ibp-mustgather --noserver -f mustgather
@@ -215,8 +223,8 @@ else
 fi
 
 echo "$(date) Retrieving archive file"
-$thing cp mustgather/mustgather:/tmp/mustgather.tar.gz ./mustgather.tar.gz
+$thing cp mustgather/mustgather:/tmp/mustgather.tar.gz ./mustgather-"$timestamp".tar.gz
 
-echo "$(date) Archive file retrieved and is located at ./mustgather.tar.gz"
+echo "$(date) Archive file retrieved and is located at ./mustgather-$timestamp.tar.gz"
 echo "$(date) Finished"
 
