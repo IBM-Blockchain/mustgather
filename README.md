@@ -59,20 +59,23 @@ If you just want to collect information on your environment without collecting a
     ./run-mustgather.sh
 ```
 
-If you want to collect information about your environment and IBM Blockchain Platform installation, then you need to provide the namespace of the installation:
+If you want to collect information about your environment and IBM Blockchain Platform installation, then you need to provide the namespace of the installation. Replace <namespace> with the name that you used for your IBM Blockchain Platform deployment namespace:
 
 ```
-    ./run-mustgather.sh -n <ibpNameSpace>
+    ./run-mustgather.sh -n <namespace>
 ```
 
 If you want to run the script on Openshift then use the `-type`option:
 
 ```
-    ./run-mustgather.sh -n <ibpNameSpace> -type oc
+    ./run-mustgather.sh -n <namespace> -type oc
 ```
 
-If you want to run the script on Windows then you will need to use powershell:
+If you want to run the script on Windows then you will need to use Power Shell:
 
 ```
-    ./run-mustgasther.psl
+    ./run-mustgather.ps1
 ```
+
+Please note, to run a Power Shell script you may need to set the execution policy. Please see https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.1 for more details.
+
